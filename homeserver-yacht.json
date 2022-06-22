@@ -1,0 +1,63 @@
+[
+  {
+    "title": "transmission",
+    "name": "transmission",
+    "image": "linuxserver/transmission",
+    "description": "",
+    "categories": [
+      "Downloads"
+    ],
+    "platform": "linux",
+    "note": "transmission web torrent ",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      {
+        "WebUi": "9091:9091/tcp"
+      },
+      {
+        "system": "51413:51413/tcp"
+      },
+      {
+        "usystem": "51413:51413/udp"
+      }
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "!config"
+      },
+      {
+        "container": "/downloads",
+        "bind": "!downloads"
+      },
+      {
+        "container": "/watch",
+        "bind": "!data"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "default": "!PUID",
+        "label": "PUID"
+      },
+      {
+        "name": "PGID",
+        "default": "!PGID",
+        "label": "PGID"
+      },
+      {
+        "name": "TZ",
+        "default": "!TZ",
+        "label": "TZ"
+      }
+    ],
+    "command": [],
+    "devices": [],
+    "labels": [],
+    "sysctls": [],
+    "cap_add": [],
+    "logo": "https://raw.githubusercontent.com/dperson/transmission/master/logo.png",
+    "network_mode": "host"
+  }
+]
