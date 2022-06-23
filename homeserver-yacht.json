@@ -3,22 +3,22 @@
     "title": "transmission",
     "name": "transmission",
     "image": "linuxserver/transmission",
-    "description": "",
+    "description": "transmission",
     "categories": [
       "Downloads"
     ],
     "platform": "linux",
-    "note": "transmission web torrent ",
+    "note": "",
     "restart_policy": "unless-stopped",
     "ports": [
       {
-        "WebUi": "9091:9091/tcp"
+        "WebUI": "9091:9091/tcp"
       },
       {
-        "system": "51413:51413/tcp"
+        "Torrent Port TCP": "51413:51413/tcp"
       },
       {
-        "usystem": "51413:51413/udp"
+        "Torrent Port UDP": "51413:51413/udp"
       }
     ],
     "volumes": [
@@ -39,16 +39,83 @@
       {
         "name": "PUID",
         "default": "!PUID",
+        "label": "PUID",
+        "description": "PUID"
+      },
+      {
+        "name": "PGID",
+        "default": "!PGID",
+        "label": "PGID",
+        "description": "PGID"
+      },
+      {
+        "name": "TZ",
+        "default": "!TZ",
+        "label": "TZ",
+        "description": "TZ"
+      }
+    ],
+    "command": [],
+    "devices": [],
+    "labels": [
+      {
+        "label": "",
+        "value": "",
+        "variable": ""
+      }
+    ],
+    "sysctls": [],
+    "cap_add": [],
+    "logo": "https://raw.githubusercontent.com/dperson/transmission/master/logo.png",
+    "network_mode": "bridge"
+  },
+  {
+    "title": "sonarr",
+    "name": "sonarr",
+    "image": "linuxserver/sonarr",
+    "description": "",
+    "categories": [
+      "Media"
+    ],
+    "platform": "linux",
+    "note": "",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      {
+        "WebUi": "8989:8989/tcp"
+      }
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "!config"
+      },
+      {
+        "container": "/media",
+        "bind": "!tv"
+      },
+      {
+        "container": "/downloads",
+        "bind": "!downloads"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "default": "!PUID",
+        "description": "PUID",
         "label": "PUID"
       },
       {
         "name": "PGID",
         "default": "!PGID",
+        "description": "PGID",
         "label": "PGID"
       },
       {
         "name": "TZ",
         "default": "!TZ",
+        "description": "TZ",
         "label": "TZ"
       }
     ],
@@ -57,7 +124,179 @@
     "labels": [],
     "sysctls": [],
     "cap_add": [],
-    "logo": "https://raw.githubusercontent.com/dperson/transmission/master/logo.png",
-    "network_mode": "host"
+    "logo": "https://res.cloudinary.com/razordarkamg/image/upload/v1621212884/SonarrV3_pufacd.png",
+    "network_mode": "bridge"
+  },
+  {
+    "title": "radarr",
+    "name": "radarr",
+    "image": "linuxserver/radarr",
+    "description": "",
+    "categories": [
+      "Movies"
+    ],
+    "platform": "linux",
+    "note": "",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      {
+        "WebUi": "7878:7878/tcp"
+      }
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "!config"
+      },
+      {
+        "container": "/media",
+        "bind": "!movies"
+      },
+      {
+        "container": "/downloads",
+        "bind": "!downloads"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "default": "!PUID",
+        "description": "PUID",
+        "label": "PUID"
+      },
+      {
+        "name": "PGID",
+        "default": "!PGID",
+        "description": "PGID",
+        "label": "PGID"
+      },
+      {
+        "name": "TZ",
+        "default": "!TZ",
+        "description": "TZ",
+        "label": "TZ"
+      }
+    ],
+    "command": [],
+    "devices": [],
+    "labels": [],
+    "sysctls": [],
+    "cap_add": [],
+    "logo": "https://avatars.githubusercontent.com/u/25025331?v=4&s=400",
+    "network_mode": "bridge"
+  },
+  {
+    "title": "jellyfin",
+    "name": "jellyfin",
+    "image": "linuxserver/jellyfin",
+    "description": "",
+    "categories": [],
+    "platform": "linux",
+    "note": "",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      {
+        "WebUi": "8096:8096/tcp"
+      }
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "!config"
+      },
+      {
+        "container": "/cache",
+        "bind": "!config"
+      },
+      {
+        "container": "/media",
+        "bind": "!media"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "default": "!PUID",
+        "description": "PUID",
+        "label": "PUID"
+      },
+      {
+        "name": "PGID",
+        "default": "!PGID",
+        "description": "PGID",
+        "label": "PGID"
+      },
+      {
+        "name": "TZ",
+        "default": "!TZ",
+        "description": "TZ",
+        "label": "TZ"
+      }
+    ],
+    "command": [],
+    "devices": [],
+    "labels": [],
+    "sysctls": [],
+    "cap_add": [],
+    "logo": "https://developer.asustor.com/uploadIcons/0020_999_1568614440_Jellyfin_256.png",
+    "network_mode": "bridge"
+  },
+  {
+    "title": "jackett",
+    "name": "jackett",
+    "image": "linuxserver/jackett",
+    "description": "",
+    "categories": [],
+    "platform": "linux",
+    "note": "",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      {
+        "WebUi": "9117:9117/tcp"
+      }
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "!config"
+      },
+      {
+        "container": "/downloads",
+        "bind": "!downloads"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "default": "!PUID",
+        "description": "PUID",
+        "label": "PUID"
+      },
+      {
+        "name": "PGID",
+        "default": "!PGID",
+        "description": "PGID",
+        "label": "PGID"
+      },
+      {
+        "name": "TZ",
+        "default": "!TZ",
+        "description": "TZ",
+        "label": "TZ"
+      },
+      {
+        "name": "AUTO_UPDATE",
+        "default": "true",
+        "description": "AUTO_UPDATE",
+        "label": "AUTO_UPDATE"
+      }
+    ],
+    "command": [],
+    "devices": [],
+    "labels": [],
+    "sysctls": [],
+    "cap_add": [],
+    "logo": "https://user-images.githubusercontent.com/27040483/28728094-99f3e3f6-73c7-11e7-8f8d-28912dc6ac0d.png",
+    "network_mode": "bridge"
   }
 ]
